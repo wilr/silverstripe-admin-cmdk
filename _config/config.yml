@@ -1,0 +1,27 @@
+---
+Name: wilr-admin-cmdk
+---
+SilverStripe\Core\Injector\Injector:
+  Wilr\AdminCmdk\Search\CommandSearchProvider:
+    class: Wilr\AdminCmdk\Search\DatabaseSearchProvider
+
+SilverStripe\Admin\LeftAndMain:
+  extensions:
+    - Wilr\AdminCmdk\Extensions\LeftAndMainCmdkExtension
+
+Wilr\AdminCmdk\Extensions\LeftAndMainCmdkExtension:
+  enabled: true
+
+Wilr\AdminCmdk\Search\DatabaseSearchProvider:
+  result_limit: 20
+  per_class_limit: 5
+  minimum_query_length: 2
+  searchable_classes:
+    SilverStripe\CMS\Model\SiteTree:
+      fields: ['Title', 'MenuTitle']
+      icon: 'font-icon-p-file'
+      group: 'Pages'
+    SilverStripe\Assets\File:
+      fields: ['Name', 'Title']
+      icon: 'font-icon-image'
+      group: 'Files'
